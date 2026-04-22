@@ -11,25 +11,45 @@ function App() {
     setName('')
   }
 
+  const removeName = (index) => {
+    setList(list.filter((_, i) => i !== index))
+  }
+
   return (
-    <div className="container">
-      <h1>Listahan sa mga gwapo 😎</h1>
+    <div className="app">
+      <div className="card">
+        <h1>😎 List sa mga gwapo</h1>
+        <p className="subtitle">Add your entries below</p>
 
-      <div className="input-group">
-        <input
-          type="text"
-          placeholder="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <button onClick={addName}>Add</button>
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Enter name..."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && addName()}
+          />
+          <button onClick={addName}>Add</button>
+        </div>
+
+        {list.length === 0 ? (
+          <p className="empty">Wala pang gwapo sa list 😢</p>
+        ) : (
+          <ul>
+            {list.map((item, index) => (
+              <li key={index} className="list-item">
+                <span>{item}</span>
+                <button
+                  className="delete"
+                  onClick={() => removeName(index)}
+                >
+                  ✕
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-
-      <ul>
-        {list.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
     </div>
   )
 }
