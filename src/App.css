@@ -1,35 +1,34 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-}
-
 /* Background */
 .app {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 20px; /* prevents edge overlap on small screens */
 }
 
 /* Card */
 .card {
   background: white;
-  padding: 30px;
+  padding: 25px;
   border-radius: 20px;
-  width: 350px;
+  width: 100%;
+  max-width: 400px; /* responsive fix */
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   text-align: center;
-  animation: fadeIn 0.5s ease;
 }
 
+/* Title */
 h1 {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .subtitle {
@@ -38,33 +37,33 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* Input */
+/* Input group */
 .input-group {
   display: flex;
   gap: 10px;
+  margin-bottom: 15px;
 }
 
 input {
   flex: 1;
+  min-width: 0; /* prevents overflow */
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ddd;
   outline: none;
-}
-
-input:focus {
-  border-color: #667eea;
+  font-size: 14px;
 }
 
 /* Button */
 button {
-  padding: 10px 15px;
+  padding: 10px 14px;
   border: none;
   background: #667eea;
   color: white;
   border-radius: 10px;
   cursor: pointer;
   transition: 0.2s;
+  white-space: nowrap; /* prevents text wrap overlap */
 }
 
 button:hover {
@@ -73,19 +72,28 @@ button:hover {
 
 /* List */
 ul {
-  margin-top: 20px;
+  margin-top: 10px;
   list-style: none;
+  padding: 0;
 }
 
+/* List item */
 .list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   background: #f4f4f4;
-  padding: 10px;
+  padding: 10px 12px;
   border-radius: 10px;
   margin-bottom: 10px;
-  animation: slideUp 0.3s ease;
+}
+
+/* Name text */
+.list-item span {
+  flex: 1;
+  text-align: left;
+  word-break: break-word; /* prevents long names overlapping */
 }
 
 /* Delete button */
@@ -93,33 +101,12 @@ ul {
   background: transparent;
   color: red;
   font-size: 16px;
+  flex-shrink: 0; /* prevents squishing */
 }
 
 /* Empty text */
 .empty {
-  margin-top: 20px;
+  margin-top: 15px;
   color: gray;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  font-size: 14px;
 }
